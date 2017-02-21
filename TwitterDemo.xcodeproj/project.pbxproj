@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96DC5E5A1E5BC3D4004149FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC5E591E5BC3D4004149FE /* User.swift */; };
+		96DC5E5E1E5BC416004149FE /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC5E5D1E5BC416004149FE /* Tweet.swift */; };
 		96FA8D5B1E5A9167000DE432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FA8D5A1E5A9167000DE432 /* AppDelegate.swift */; };
 		96FA8D5D1E5A9167000DE432 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FA8D5C1E5A9167000DE432 /* ViewController.swift */; };
 		96FA8D601E5A9167000DE432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FA8D5E1E5A9167000DE432 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		5715731F8FF838D4BD9F8EF8 /* Pods-TwitterDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterDemo/Pods-TwitterDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5DEB7FD598AA048D18880E23 /* Pods-TwitterDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterDemo/Pods-TwitterDemo.release.xcconfig"; sourceTree = "<group>"; };
+		96DC5E591E5BC3D4004149FE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		96DC5E5D1E5BC416004149FE /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		96FA8D571E5A9167000DE432 /* TwitterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FA8D5A1E5A9167000DE432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96FA8D5C1E5A9167000DE432 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		96DC5E561E5BC362004149FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				96DC5E591E5BC3D4004149FE /* User.swift */,
+				96DC5E5D1E5BC416004149FE /* Tweet.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		96DC5E571E5BC385004149FE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				96FA8D5C1E5A9167000DE432 /* ViewController.swift */,
+				96FA8D6C1E5A9419000DE432 /* LoginViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		96DC5E581E5BC391004149FE /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		96FA8D4E1E5A9167000DE432 = {
 			isa = PBXGroup;
 			children = (
@@ -80,13 +109,14 @@
 		96FA8D591E5A9167000DE432 /* TwitterDemo */ = {
 			isa = PBXGroup;
 			children = (
+				96DC5E581E5BC391004149FE /* API */,
+				96DC5E571E5BC385004149FE /* ViewControllers */,
+				96DC5E561E5BC362004149FE /* Models */,
 				96FA8D5A1E5A9167000DE432 /* AppDelegate.swift */,
-				96FA8D5C1E5A9167000DE432 /* ViewController.swift */,
 				96FA8D5E1E5A9167000DE432 /* Main.storyboard */,
 				96FA8D611E5A9167000DE432 /* Assets.xcassets */,
 				96FA8D631E5A9167000DE432 /* LaunchScreen.storyboard */,
 				96FA8D661E5A9167000DE432 /* Info.plist */,
-				96FA8D6C1E5A9419000DE432 /* LoginViewController.swift */,
 			);
 			path = TwitterDemo;
 			sourceTree = "<group>";
@@ -215,6 +245,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DC5E5A1E5BC3D4004149FE /* User.swift in Sources */,
+				96DC5E5E1E5BC416004149FE /* Tweet.swift in Sources */,
 				96FA8D6D1E5A9419000DE432 /* LoginViewController.swift in Sources */,
 				96FA8D5D1E5A9167000DE432 /* ViewController.swift in Sources */,
 				96FA8D5B1E5A9167000DE432 /* AppDelegate.swift in Sources */,
