@@ -20,8 +20,8 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet{
             tweetLabel.text = tweet.text
-            nameLabel.text = User.currentUser?.name
-            
+            //print("1231231231231231231\(tweet.text)")
+            nameLabel.text = tweet.user?.name
             
             
         }

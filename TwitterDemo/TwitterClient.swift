@@ -29,7 +29,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             -> Void in
             
             let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")
-            UIApplication.shared.openURL(url!)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             
         }) { (error: Error?) -> Void in
             print("error: \(error!.localizedDescription)")
@@ -92,7 +92,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
-        get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) -> Void in
+        get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
             print("acount: \(response)")
             
             let userDictionary = response as! NSDictionary

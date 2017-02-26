@@ -18,17 +18,18 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.reloadData()
         
-        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) -> () in
+        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             
             self.tweets = tweets
             
-           /* for tweet in tweets{
-                print(tweet.text)
-            }*/
+            for tweet in tweets{
+                print(tweet.text!)
+            }
             
-            }, failure: { (error: Error) -> () in
+            self.tableView.reloadData()
+            
+            }, failure: { (error: Error) in
                 print(error.localizedDescription)
         })
         
@@ -50,10 +51,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tweets != nil {
-            return tweets.count
-        }
-        return 0
+        return tweets?.count ?? 0
     }
     
     
@@ -63,8 +61,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-        cell.tweet = tweets[indexPath.row]
+        cell.tweet = tweets![indexPath.row]
         
+        //tableView.reloadData()
         
         
         return cell
