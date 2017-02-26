@@ -12,7 +12,8 @@ class Tweet: NSObject {
     
     var user: User?
     var text: String?
-    var timeStamp: NSDate?
+    var timeStamp: String?
+    var timeStampString : Date?
     var retweetCount: Int = 0
     var favoriteCount: Int = 0
     
@@ -23,13 +24,15 @@ class Tweet: NSObject {
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
         favoriteCount = (dictionary["favourites_count"] as? Int) ?? 0
         
-        let timestampString = dictionary["created_at"] as? String
-        if let timestampString = timestampString
-        {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            timeStamp = formatter.date(from: timestampString) as NSDate?
-        }
+        timeStamp = dictionary["created_at"] as? String
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        timeStampString = formatter.date(from: timeStamp!)
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        timeStamp = formatter.string(from: timeStampString!)
+        
     }
     
     

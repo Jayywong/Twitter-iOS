@@ -62,9 +62,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         cell.tweet = tweets![indexPath.row]
-        
-        //tableView.reloadData()
-        
+        cell.selectionStyle = .none
         
         return cell
     }

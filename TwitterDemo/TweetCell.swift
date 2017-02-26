@@ -11,17 +11,28 @@ import UIKit
 class TweetCell: UITableViewCell {
     
     
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tweetTime: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     
     
+    @IBOutlet weak var replyLabel: UIImageView!
+    @IBOutlet weak var retweetLabel: UIImageView!
+    @IBOutlet weak var favoriteLabel: UIImageView!
+    
+    
+    
     var tweet: Tweet! {
         didSet{
             tweetLabel.text = tweet.text
-            //print("1231231231231231231\(tweet.text)")
-            nameLabel.text = tweet.user?.name
+            //print("1231231231231231231whywontyouwork!!!!!\(tweet.text)")
+            nameLabel.text = (tweet.user?.name)!
+            tweetTime.text = tweet.timeStamp
+            userNameLabel.text = tweet.user?.screenName
+            profileImageView.setImageWith((tweet.user?.profileURL)! as URL)
+            
             
             
         }
