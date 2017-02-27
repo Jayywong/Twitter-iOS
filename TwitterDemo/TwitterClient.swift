@@ -32,7 +32,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             
         }) { (error: Error?) -> Void in
-            print("error: \(error!.localizedDescription)")
+            print("TwitterClient: fail to log in")
             self.loginFailure?(error!)
         }
 
@@ -58,13 +58,15 @@ class TwitterClient: BDBOAuth1SessionManager {
                 self.loginSuccess?()
             }, failure: { (error: Error) -> () in
                 self.loginFailure?(error)
+                print("fail to fetch token")
             })
             
             
             
             
         }) { (error: Error?) -> Void in
-            print("error: \(error!.localizedDescription)")
+            //print("error: \(error!.localizedDescription)")
+            print("fail to open url")
             self.loginFailure?(error!)
         }
     }
@@ -91,9 +93,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     
-    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ())
+    {
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
-            print("acount: \(response)")
+            //print("acount: \(response)")
             
             let userDictionary = response as! NSDictionary
             let user = User(dictionary: userDictionary)
@@ -102,8 +105,38 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
             failure(error)
+            print("fail to get current user")
         })
     }
     
+    
+    func retweet(id: Int, success: @escaping () -> (), failure: @escaping (Error) -> ())
+    {
+        
+        post("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: {(task: URLSessionDataTask, response: Any?) in
+            
+            //let tweet = Tweet.tweetsWithArray(dictionaries: response as! [NSDictionary])
+            success()
+            
+            
+        }) {(task: URLSessionDataTask?, error: Error) in
+            failure(error)
+            
+        }
+    }
+    
+    func favorited(id: Int, success: @escaping () -> (), failure: @escaping (Error) -> ())
+    {
+        
+        post("1.1/favorites/create.json?id=\(id)", parameters: nil, progress: nil, success: {(task: URLSessionDataTask, response: Any?) in
+            
+            success()
+            
+        }) {(task: URLSessionDataTask?, error: Error) in
+            failure(error)
+            
+        }
+    }
+
     
 }

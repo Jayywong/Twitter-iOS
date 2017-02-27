@@ -39,8 +39,10 @@ class User: NSObject {
     
     static var _currentUser: User?
     
-    class var currentUser: User?{
-        get {
+    class var currentUser: User?
+    {
+        get
+        {
             
             if _currentUser == nil
             {
@@ -54,21 +56,25 @@ class User: NSObject {
                 
                     _currentUser = User(dictionary: dictionary!)
                 }
+            
             }
             return _currentUser
         }
         //saves user
-        set(user){
+        set(user)
+        {
             
             _currentUser = user
             
             let defaults = UserDefaults.standard
             
-            if let user = user {
+            if let user = user
+            {
                 let data = try! JSONSerialization.data(withJSONObject: user.dictionary!, options: [])
                 
                 defaults.set(data, forKey: "currentUserData")
-            }else{
+            }else
+            {
                 defaults.removeObject(forKey: "currentUserData")
             }
             

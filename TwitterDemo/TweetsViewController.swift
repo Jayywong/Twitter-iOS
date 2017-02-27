@@ -30,7 +30,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
             
             }, failure: { (error: Error) in
-                print(error.localizedDescription)
+                print("fail to get hometimeline")
         })
         
         
@@ -57,9 +57,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
-        
-        
-        
         
         cell.tweet = tweets![indexPath.row]
         cell.selectionStyle = .none
