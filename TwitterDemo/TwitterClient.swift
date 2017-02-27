@@ -81,9 +81,9 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
             
-           /* for tweet in tweets {
+            for tweet in tweets {
                 print("\(tweet.text!)")
-            }*/
+            }
             success(tweets)
             
             }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
