@@ -46,7 +46,7 @@ class TweetCell: UITableViewCell {
             {
                 //retweetCt.isHidden = false
                 retweetCt.text = String(tweet.retweetCount)
-            }else
+            }else if tweet.retweetCount > 1000
             {
                 retweetCt.text = "\(Double(tweet.retweetCount/1000))k"
             }
@@ -55,7 +55,7 @@ class TweetCell: UITableViewCell {
             if tweet.favoriteCount != 0 && tweet.favoriteCount < 1000
             {
                 favCt.text = String(tweet.favoriteCount)
-            }else
+            }else if tweet.favoriteCount > 1000
             {
                 favCt.text = "\(Double(tweet.favoriteCount/1000))k"
             }
