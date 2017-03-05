@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961086AA1E6BD7DB00B39704 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961086A91E6BD7DB00B39704 /* ComposeViewController.swift */; };
+		963EEE041E6B8BD300854C94 /* DetailedTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EEE031E6B8BD300854C94 /* DetailedTweetViewController.swift */; };
+		963EEE061E6BBE1900854C94 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EEE051E6BBE1900854C94 /* ProfileViewController.swift */; };
 		96884C501E625EEA00E6B8A5 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96884C4F1E625EEA00E6B8A5 /* TweetCell.swift */; };
 		96B9B08B1E615AF00016C9BD /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B9B08A1E615AF00016C9BD /* TweetsViewController.swift */; };
 		96DC5E5A1E5BC3D4004149FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC5E591E5BC3D4004149FE /* User.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		5715731F8FF838D4BD9F8EF8 /* Pods-TwitterDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterDemo/Pods-TwitterDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5DEB7FD598AA048D18880E23 /* Pods-TwitterDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterDemo/Pods-TwitterDemo.release.xcconfig"; sourceTree = "<group>"; };
+		961086A91E6BD7DB00B39704 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		963EEE031E6B8BD300854C94 /* DetailedTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedTweetViewController.swift; sourceTree = "<group>"; };
+		963EEE051E6BBE1900854C94 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		96884C4F1E625EEA00E6B8A5 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		96B9B08A1E615AF00016C9BD /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		96DC5E591E5BC3D4004149FE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -81,6 +87,9 @@
 			children = (
 				96FA8D6C1E5A9419000DE432 /* LoginViewController.swift */,
 				96B9B08A1E615AF00016C9BD /* TweetsViewController.swift */,
+				963EEE031E6B8BD300854C94 /* DetailedTweetViewController.swift */,
+				963EEE051E6BBE1900854C94 /* ProfileViewController.swift */,
+				961086A91E6BD7DB00B39704 /* ComposeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -251,11 +260,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				963EEE041E6B8BD300854C94 /* DetailedTweetViewController.swift in Sources */,
 				96DC5E5A1E5BC3D4004149FE /* User.swift in Sources */,
 				96884C501E625EEA00E6B8A5 /* TweetCell.swift in Sources */,
 				96DC5E5E1E5BC416004149FE /* Tweet.swift in Sources */,
 				96FA8D6D1E5A9419000DE432 /* LoginViewController.swift in Sources */,
+				961086AA1E6BD7DB00B39704 /* ComposeViewController.swift in Sources */,
 				96B9B08B1E615AF00016C9BD /* TweetsViewController.swift in Sources */,
+				963EEE061E6BBE1900854C94 /* ProfileViewController.swift in Sources */,
 				96DC5E601E5BFE6C004149FE /* TwitterClient.swift in Sources */,
 				96FA8D5B1E5A9167000DE432 /* AppDelegate.swift in Sources */,
 			);

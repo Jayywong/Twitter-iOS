@@ -1,18 +1,28 @@
 //
-//  LoginViewController.swift
+//  ComposeViewController.swift
 //  TwitterDemo
 //
-//  Created by Jason Wong on 2/19/17.
+//  Created by Jason Wong on 3/4/17.
 //  Copyright © 2017 Jason Wong. All rights reserved.
 //
 
 import UIKit
-import BDBOAuth1Manager
 
-class LoginViewController: UIViewController {
-
+class ComposeViewController: UIViewController {
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    
+    @IBOutlet weak var replytext: UITextField!
+    
+    var tweet: Tweet!
+    //var profileimg: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //profileImageView.setImageWith(profileimg as! URL)
 
         // Do any additional setup after loading the view.
     }
@@ -22,19 +32,15 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
-    @IBAction func LoginButton(_ sender: AnyObject) {
-        
-        TwitterClient.sharedInstance.login(success: { () -> () in
-            //print("i logged in!!!")
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }) { (error: Error) -> () in
-                print("failed to log in")
-        }
-        
-        
+    
+    @IBAction func SendButtonClicked(_ sender: Any) {
         
     }
+    
     /*
     // MARK: - Navigation
 
@@ -45,4 +51,8 @@ class LoginViewController: UIViewController {
     }
     */
 
+}
+
+protocol ComposeViewControllerDelegate: class {
+    
 }

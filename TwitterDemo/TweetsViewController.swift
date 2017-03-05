@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate {
     
     @IBOutlet var tableView: UITableView!
     var tweets: [Tweet]!
@@ -19,18 +19,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
-        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
-            
+        
+        print("calling hometimeline")
+        TwitterClient.sharedInstance.homeTimeline(success:
+        { (tweets: [Tweet]) in
             self.tweets = tweets
-            
-            for tweet in tweets{
+            for tweet in tweets
+            {
                 print(tweet.text!)
             }
-            
             self.tableView.reloadData()
-            
+            print("boom works")
             }, failure: { (error: Error) in
                 print("fail to get hometimeline")
+                print(error.localizedDescription)
         })
         
         
@@ -45,7 +47,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func onLogoutButton(_ sender: AnyObject) {
         
-        TwitterClient.sharedInstance?.logout()
+        TwitterClient.sharedInstance.logout()
         
     }
     
@@ -68,14 +70,55 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "tweetDetail"
+        {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            let data = tweets[(indexPath?.row)!]
+            
+            let DetailedTweetController = segue.destination as! DetailedTweetViewController
+            DetailedTweetController.tweet = data
+        }
+        
+        if segue.identifier == "ProfileView"
+        {
+            
+            
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![indexPath!.row]
+            
+            //view -> navigationcontroller -> view
+            let navigationcontroller = segue.destination as! UINavigationController
+            let viewController = navigationcontroller.topViewController as! ProfileViewController
+            viewController.user = tweet.user
+        }
+        
+        if segue.identifier == "ComposeView"
+        {
+            let cell = view.superview as! TweetCell
+            
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let navigationcontroller = segue.destination as! UINavigationController
+            let viewController = navigationcontroller.topViewController as! ComposeViewController
+            //viewController.profileimg = tweet.user?.profileURL as! String
+            //viewController.delegate = self
+        }
+        
     }
-    */
+    
 
 }

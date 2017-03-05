@@ -11,9 +11,18 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+    static var sharedInstance: TwitterClient {
+        struct Static {
+            static let instance  = TwitterClient(
+                baseURL: URL(string: "https://api.twitter.com")!,
+                consumerKey: "tkYf7uLiSmeWdw4DSyXRpS5Rt",
+                consumerSecret: "aGQZKH6IhKsQb7krdUKOGZFOYef43WCSvWdchzMVefVaaEBuWB")
+        }
+        
+        return Static.instance!
+    }
     
-    
-    static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com") as URL!, consumerKey: "tkYf7uLiSmeWdw4DSyXRpS5Rt", consumerSecret: "aGQZKH6IhKsQb7krdUKOGZFOYef43WCSvWdchzMVefVaaEBuWB")
+    //static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com") as URL!, consumerKey: "tkYf7uLiSmeWdw4DSyXRpS5Rt", consumerSecret: "aGQZKH6IhKsQb7krdUKOGZFOYef43WCSvWdchzMVefVaaEBuWB")
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) -> ())?
@@ -24,12 +33,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         loginFailure = failure
         
         
-        TwitterClient.sharedInstance?.deauthorize()
-        TwitterClient.sharedInstance?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?)
+        TwitterClient.sharedInstance.deauthorize()
+        TwitterClient.sharedInstance.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?)
             -> Void in
-            
-            let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            print("i got a token. token is \(requestToken!)")
+            if let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)"){
+                print("url is this")
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                
+            }else{
+                print("failed to make url")
+            }
             
         }) { (error: Error?) -> Void in
             print("TwitterClient: fail to log in")
@@ -74,8 +88,9 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     
     func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()){
-
-        get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) -> Void in
+        print("calling home in twitterClient again")
+        print(TwitterClient.sharedInstance)
+        get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let dictionaries = response as! [NSDictionary]
             
@@ -87,6 +102,8 @@ class TwitterClient: BDBOAuth1SessionManager {
             success(tweets)
             
             }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
+                print("failed to call home_time api")
+                
                 failure(error)
         })
         

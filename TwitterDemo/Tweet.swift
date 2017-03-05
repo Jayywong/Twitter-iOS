@@ -34,6 +34,7 @@ class Tweet: NSObject {
         formatter.timeStyle = .short
         timeStamp = formatter.string(from: timeStampString!)
         
+        
     }
     
     

@@ -72,7 +72,7 @@ class TweetCell: UITableViewCell {
         {
             retweetBtn.setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
             
-            TwitterClient.sharedInstance?.retweet(id: tweet.id!, success: { (tweet) in
+            TwitterClient.sharedInstance.retweet(id: tweet.id!, success: { (tweet) in
                 
             }, failure: { (error: Error) in
                 print(error.localizedDescription)
@@ -96,7 +96,7 @@ class TweetCell: UITableViewCell {
         {
             favBtn.setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
             
-            TwitterClient.sharedInstance?.favorited(id: tweet.id!, success: {
+            TwitterClient.sharedInstance.favorited(id: tweet.id!, success: {
         
                 }, failure: { (error: Error) in
                     print(error.localizedDescription)

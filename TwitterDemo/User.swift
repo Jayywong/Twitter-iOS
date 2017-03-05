@@ -16,6 +16,9 @@ class User: NSObject {
     var screenName: String?
     var profileURL: NSURL?
     var tagline: String?
+    var tweetct = 0
+    var followersct = 0
+    var followingct = 0
     
     var dictionary: NSDictionary?
     
@@ -34,6 +37,10 @@ class User: NSObject {
         
         
         tagline = dictionary["description"] as? String
+        tweetct = dictionary["statuses_count"] as! Int
+        followersct = dictionary["followers_count"] as! Int
+        followingct = dictionary["friends_count"] as! Int
+        
     }
     
     
@@ -52,11 +59,13 @@ class User: NSObject {
             
                 if let userData = userData
                 {
-                    let dictionary = try! JSONSerialization.jsonObject(with: userData, options: .allowFragments) as? NSDictionary
+                    if let dictionary = try? JSONSerialization.jsonObject(with: userData, options: .allowFragments) as? NSDictionary{
+                        _currentUser = User(dictionary: dictionary!)
+
+                    }
                 
-                    _currentUser = User(dictionary: dictionary!)
                 }
-            
+                
             }
             return _currentUser
         }
