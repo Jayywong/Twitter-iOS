@@ -36,7 +36,7 @@ class TweetCell: UITableViewCell {
             tweetLabel.text = tweet.text
             //print("1231231231231231231whywontyouwork!!!!!\(tweet.text)")
             nameLabel.text = (tweet.user?.name)!
-            tweetTime.text = tweet.timeStamp
+            tweetTime.text = tweet.timeStamp!
             userNameLabel.text = tweet.user?.screenName
             profileImageView.setImageWith((tweet.user?.profileURL)! as URL)
             
