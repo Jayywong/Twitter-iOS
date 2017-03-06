@@ -21,14 +21,15 @@ class ProfileViewController: UIViewController {
     
     
     var user: User!
+    var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ProfileImageView.setImageWith(user.profileURL as! URL)
-        nameLabel.text = user.name
-        screenNameLabel.text = user.screenName
-        actualProfileImage.setImageWith(user.profileURL as! URL)
+        ProfileImageView.setImageWith(tweet.user?.profileURL as! URL)
+        nameLabel.text = tweet.user?.name
+        screenNameLabel.text = tweet.user?.screenName
+        actualProfileImage.setImageWith(tweet.user?.profileURL as! URL)
         numberOfTweets.text = "\(user.tweetct)\n Tweets"
         followerLabel.text = "\(user.followersct)\n Followers"
         followingLabel.text = "\(user.followingct)\n Following"
@@ -48,14 +49,22 @@ class ProfileViewController: UIViewController {
     
 
     
-   /* // MARK: - Navigation
+    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-    }*/
+        if segue.identifier == "ComposeView"
+        {
+            let navigationController = segue.destination as! UINavigationController
+            let composeTweetViewController = navigationController.topViewController as! ComposeViewController
+            composeTweetViewController.tweet = tweet
+            
+        }
+        
+    }
     
 
 }

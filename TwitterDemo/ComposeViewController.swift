@@ -8,21 +8,29 @@
 
 import UIKit
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     
-    @IBOutlet weak var replytext: UITextField!
+    
+    @IBOutlet weak var replyText: UITextView!
     
     var tweet: Tweet!
-    //var profileimg: String!
+    var user: User!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //profileImageView.setImageWith(profileimg as! URL)
+        profileImageView.setImageWith((tweet.user?.profileURL)! as URL)
+        nameLabel.text = tweet.user?.name
+        screenNameLabel.text = tweet.user?.screenName
+        
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -38,7 +46,14 @@ class ComposeViewController: UIViewController {
 
     
     @IBAction func SendButtonClicked(_ sender: Any) {
+        let text = replyText.text
         
+        let tweetmsg = text?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        TwitterClient.sharedInstance.composeTweet(tweet: tweetmsg!, success: { (tweet: Tweet) in
+            self.dismiss(animated: true, completion: nil)
+        }) { (error: Error) in
+            print(error.localizedDescription)
+        }
     }
     
     /*
@@ -53,6 +68,3 @@ class ComposeViewController: UIViewController {
 
 }
 
-protocol ComposeViewControllerDelegate: class {
-    
-}

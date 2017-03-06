@@ -114,7 +114,7 @@ class DetailedTweetViewController: UIViewController {
     
     
 
-  /*
+  
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -124,14 +124,12 @@ class DetailedTweetViewController: UIViewController {
         
         if segue.identifier == "ReplyView"
         {
-            let button = sender as! UIButton
-            let view = button.superview!
-            
             let navigationController = segue.destination as! UINavigationController
             let composeTweetViewController = navigationController.topViewController as! ComposeViewController
+            composeTweetViewController.tweet = tweet
             
         }
     }
-    */
+    
 
 }

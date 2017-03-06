@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
     var tweets: [Tweet]!
@@ -102,21 +102,24 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             //view -> navigationcontroller -> view
             let navigationcontroller = segue.destination as! UINavigationController
             let viewController = navigationcontroller.topViewController as! ProfileViewController
+            viewController.tweet = tweet
             viewController.user = tweet.user
         }
         
-        if segue.identifier == "ComposeView"
+      /*  if segue.identifier == "ComposeView"
         {
+            let button = sender as! UIButton
+            let view = button.superview!
             let cell = view.superview as! TweetCell
             
             let indexPath = tableView.indexPath(for: cell)
             let tweet = tweets![indexPath!.row]
             
-            let navigationcontroller = segue.destination as! UINavigationController
-            let viewController = navigationcontroller.topViewController as! ComposeViewController
-            //viewController.profileimg = tweet.user?.profileURL as! String
-            //viewController.delegate = self
-        }
+            let navigationController = segue.destination as! UINavigationController
+            let composeViewController = navigationController.topViewController as! ComposeViewController
+            
+            composeViewController.user = tweet.user
+        }*/
         
     }
     
